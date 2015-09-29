@@ -15,16 +15,13 @@ string &TrimString(string &str) {
 
 int INIParser::ReadINI(string path) {
     ifstream in_conf_file(path.c_str());
-    if (!in_conf_file) {
-        return 0;
-    }
+    if (!in_conf_file) {  return 0; }
 
     string str_line = "";
     string str_root = "";
     vector<ININode> vec_ini;
 
     while (getline(in_conf_file, str_line)) {
-
         string::size_type left_pos = 0;
         string::size_type right_pos = 0;
         string::size_type equal_div_pos = 0;
@@ -35,7 +32,6 @@ int INIParser::ReadINI(string path) {
             && (str_line.npos != (right_pos = str_line.find("]")))) {
             str_root = str_line.substr(left_pos + 1, right_pos - 1);
         }
-
 
         if (str_line.npos != (equal_div_pos = str_line.find("="))) {
             str_key = str_line.substr(0, equal_div_pos);
@@ -50,7 +46,6 @@ int INIParser::ReadINI(string path) {
         }
     }
 
-
     in_conf_file.close();
     in_conf_file.clear();
 
@@ -58,7 +53,6 @@ int INIParser::ReadINI(string path) {
     for (vector<ININode>::iterator itr = vec_ini.begin(); itr != vec_ini.end(); itr++) {
         map_tmp.insert(pair<string, string>(itr->root, ""));
     }
-
 
     for (map<string, string>::iterator itr = map_tmp.begin(); itr != map_tmp.end(); itr++) {
         SubNode sn;
@@ -94,7 +88,6 @@ int INIParser::WriteINI(string path) {
              sub_itr++) {
             out_conf_file << sub_itr->first << "=" << sub_itr->second << endl;
         }
-
         out_conf_file.close();
         out_conf_file.clear();
     }

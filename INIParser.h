@@ -29,7 +29,6 @@ public:
     void InsertElement(string key, string value) {
         sub_node.insert(pair<string, string>(key, value));
     }
-
     map<string, string> sub_node;
 };
 
@@ -47,8 +46,7 @@ public:
     int WriteINI(string path);
 
     void Clear() { map_ini.clear(); }
-
-
+    
 private:
     map<string, SubNode> map_ini;
 };
