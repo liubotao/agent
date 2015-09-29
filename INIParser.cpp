@@ -7,7 +7,7 @@
 
 string &TrimString(string &str) {
     string::size_type pos = 0;
-    while (str.npos != (pos = str.find(""))) {
+    while (str.npos != (pos = str.find(" "))) {
         str = str.replace(pos, pos + 1, "");
     }
     return str;
@@ -19,12 +19,12 @@ int INIParser::ReadINI(string path) {
         return 0;
     }
 
-    cout << "hello world" << endl;
     string str_line = "";
     string str_root = "";
     vector<ININode> vec_ini;
 
     while (getline(in_conf_file, str_line)) {
+
         string::size_type left_pos = 0;
         string::size_type right_pos = 0;
         string::size_type equal_div_pos = 0;
@@ -35,6 +35,7 @@ int INIParser::ReadINI(string path) {
             && (str_line.npos != (right_pos = str_line.find("]")))) {
             str_root = str_line.substr(left_pos + 1, right_pos - 1);
         }
+
 
         if (str_line.npos != (equal_div_pos = str_line.find("="))) {
             str_key = str_line.substr(0, equal_div_pos);
@@ -49,6 +50,7 @@ int INIParser::ReadINI(string path) {
         }
     }
 
+
     in_conf_file.close();
     in_conf_file.clear();
 
@@ -57,8 +59,9 @@ int INIParser::ReadINI(string path) {
         map_tmp.insert(pair<string, string>(itr->root, ""));
     }
 
-    SubNode sn;
+
     for (map<string, string>::iterator itr = map_tmp.begin(); itr != map_tmp.end(); itr++) {
+        SubNode sn;
         for (vector<ININode>::iterator sub_itr = vec_ini.begin(); sub_itr != vec_ini.end(); sub_itr++) {
             if (sub_itr->root == itr->first) {
                 sn.InsertElement(sub_itr->key, sub_itr->value);
@@ -79,7 +82,6 @@ string INIParser::GetValue(string root, string key) {
 }
 
 int INIParser::WriteINI(string path) {
-
     ofstream out_conf_file(path.c_str());
     if (!out_conf_file) {
         return -1;
@@ -95,8 +97,9 @@ int INIParser::WriteINI(string path) {
 
         out_conf_file.close();
         out_conf_file.clear();
-        return 1;
     }
+
+    return 1;
 }
 
 vector<ININode>::size_type INIParser::SetValue(string root, string key, string value) {
@@ -114,11 +117,8 @@ vector<ININode>::size_type INIParser::SetValue(string root, string key, string v
 
 int main() {
     INIParser iniParser;
-
     iniParser.ReadINI("config.ini");
-    string value = iniParser.GetValue("aws", "ip");
-    cout << " aws ip :" << value << endl;
-    value = iniParser.GetValue("bjyg", "ip");
-    cout << " bjyg ip :" << value << endl;
+    string ip = iniParser.GetValue("bjyg", "ip");
+    cout << " bjyg ip :" << ip << endl;
     return 0;
 }

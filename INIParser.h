@@ -46,10 +46,8 @@ public:
 
     int WriteINI(string path);
 
-    void Clear() {
-        map_ini.clear();
+    void Clear() { map_ini.clear(); }
 
-    }
 
 private:
     map<string, SubNode> map_ini;
