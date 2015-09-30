@@ -73,7 +73,7 @@ bool Logging::logInit(LogLevel logLevel, std::string &filename, bool append, boo
     }
 
     setvbuf(fp_, (char *) NULL, _IOLBF, 0);
-    cout << "INFO now all the running-information are going to the file [" << logFile_ << "]"<< endl;
+    cout << "INFO now all the running-information are going to the file [" << logFile_ << "]" << endl;
     return true;
 }
 
@@ -133,7 +133,6 @@ bool Logging::writeLog(char *buf, int len) {
     return true;
 }
 
-
 bool Logging::closeLogFile() {
     if (fp_ == NULL) {
         return false;
@@ -143,10 +142,4 @@ bool Logging::closeLogFile() {
     fclose(fp_);
     fp_ = NULL;
     return true;
-}
-
-int main() {
-    LOG_INIT(LogLevel::LL_DEBUG, "monitor", "/data/logs");
-    LOG_ERROR("agent server start failure: load config error!");
-
 }

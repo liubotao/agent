@@ -15,7 +15,7 @@ string &TrimString(string &str) {
 
 int INIParser::ReadINI(string path) {
     ifstream in_conf_file(path.c_str());
-    if (!in_conf_file) {  return 0; }
+    if (!in_conf_file) { return 0; }
 
     string str_line = "";
     string str_root = "";

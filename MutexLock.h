@@ -10,24 +10,26 @@
 class MutexLock {
 
 public:
-    MutexLock() {pthread_mutex_init(&mutex_, NULL);}
+    MutexLock() { pthread_mutex_init(&mutex_, NULL); }
 
-    ~MutexLock(){pthread_mutex_destroy(&mutex_);}
+    ~MutexLock() { pthread_mutex_destroy(&mutex_); }
 
-    void lock() { pthread_mutex_lock(&mutex_);}
+    void lock() { pthread_mutex_lock(&mutex_); }
 
-    void unlock() { pthread_mutex_unlock(&mutex_);}
+    void unlock() { pthread_mutex_unlock(&mutex_); }
+
 private:
     pthread_mutex_t mutex_;
 
 private:
-    MutexLock(const MutexLock&);
-    MutexLock&operator=(const MutexLock&);
+    MutexLock(const MutexLock &);
+
+    MutexLock &operator=(const MutexLock &);
 };
 
 class MutexLockGuard {
 public:
-    explicit MutexLockGuard(MutexLock& mutex)
+    explicit MutexLockGuard(MutexLock &mutex)
             : mutex_(mutex) {
         mutex_.lock();
     }
@@ -37,11 +39,13 @@ public:
     }
 
 private:
-    MutexLock& mutex_;
+    MutexLock &mutex_;
 
 private:
-    MutexLockGuard(const MutexLockGuard&);
-    MutexLockGuard&operator=(const MutexLockGuard&);
+    MutexLockGuard(const MutexLockGuard &);
+
+    MutexLockGuard &operator=(const MutexLockGuard &);
 
 };
+
 #endif //AGENT_MUTEXLOCK_H

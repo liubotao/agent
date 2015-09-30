@@ -51,7 +51,7 @@
 #define MACRO_WARN_RET(condition, return_val, log_fmt, log_arg...) {\
     if ((condition)) {\
         LOG_WARN( log_fmt, ##log_arg);\
-		return return_val;\
+        return return_val;\
     }\
 }
 #endif //AGENT_MACRO_DEFINE_H
