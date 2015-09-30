@@ -106,12 +106,3 @@ vector<ININode>::size_type INIParser::SetValue(string root, string key, string v
     }
     return map_ini.size();
 }
-
-
-int main() {
-    INIParser iniParser;
-    iniParser.ReadINI("config.ini");
-    string ip = iniParser.GetValue("bjyg", "ip");
-    cout << " bjyg ip :" << ip << endl;
-    return 0;
-}
