@@ -18,7 +18,7 @@ string getFileName(string &fullPath) {
     if (index == string::npos) {
         return "";
     }
-    return fullPath.substr(index+1);
+    return fullPath.substr(index + 1);
 }
 
 string getFilePath(string &fullPath) {

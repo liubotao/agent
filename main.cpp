@@ -2,7 +2,6 @@
 // Created by liubotao on 15/9/30.
 //
 
-#include "main.h"
 #include "Util.h"
 
 int main() {
