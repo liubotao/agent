@@ -71,5 +71,6 @@ private:
 extern Logging WARN_W;
 extern Logging INFO_W;
 
+bool LOG_INIT(LogLevel l, const char* moduleName, const char* logDir);
 
 #endif //AGENT_LOGGING_H
